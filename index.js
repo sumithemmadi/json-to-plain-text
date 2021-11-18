@@ -53,7 +53,7 @@ function toPlainText(data) {
                 if (!handler) {
                     throw new Error('what the crap: ' + typeOf(y));
                 }
-                if (typeOf(y) == "string"){
+                if (typeOf(y) != "object"){
                     output += '[' + handler(y, true) + ']';
                 } else {
                     output += '\n' + handler(y, true);
