@@ -1,0 +1,32 @@
+{
+  "name": "json-to-plain-text",
+  "version": "1.0.4",
+  "description": "Convert any json to plain text",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sumithemmadi/json-to-plain-text.git"
+  },
+  "keywords": [
+    "json",
+    "plain",
+    "text",
+    "convertor"
+  ],
+  "author": "sumithemmadi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sumithemmadi/json-to-plain-text/issues"
+  },
+  "homepage": "https://github.com/sumithemmadi/json-to-plain-text#readme",
+  "devDependencies": {
+    "prettier": "2.7.1"
+  }
+}
