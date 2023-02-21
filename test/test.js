@@ -25,5 +25,5 @@ var jsonData = {
 };
 
 
-var response = convert.toPlainText(jsonData,color=true);
+var response = convert.toPlainText(jsonData, true, false)
 console.log(response);

@@ -24,7 +24,7 @@ var typeOf = require("./lib/lib.js").typeOf;
 var trimWhitespace = require("./lib/helper.js");
 
 // Function to convert JSON to PLAIN TEXT
-function toPlainText(data, color = false) {
+function toPlainText(data, color = false, spacing = true) {
   var handlers,
     indentLevel = "";
   handlers = {
@@ -78,6 +78,7 @@ function toPlainText(data, color = false) {
       Object.keys(x).forEach(function (k, i) {
         var val = x[k],
           handler = handlers[typeOf(val)];
+
         if ("undefined" === typeof val) {
           return;
         }
@@ -87,9 +88,9 @@ function toPlainText(data, color = false) {
         if (!(inArray && i === 0)) {
           output += "\n";
         }
-        var space = " ".repeat(1);
-        if (k.length <= 20) {
-          var space = " ".repeat(20 - k.length);
+        var space = ""
+        if (k.length <= 15 && spacing) {
+          var space = " ".repeat(15 - k.length);
         }
         if (color == true) {
           output += `\x1b[33m${k}\x1b[0m${space} : \x1b[32m${handler(val)
