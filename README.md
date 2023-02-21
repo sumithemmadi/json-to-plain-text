@@ -48,8 +48,9 @@ var jsonData = {
     "distance": 2
 }
 
-var response = convert.toPlainText(jsonData);
+var response = convert.toPlainText(jsonData,color=true);
 console.log(response);
+
 ```
 
 ## Output
