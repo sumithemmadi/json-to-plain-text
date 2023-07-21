@@ -1,4 +1,4 @@
-# jsonToPlainText
+# json-To-plain-text
 
 `json-to-plain-text` is a npm module that converts JSON-like data or plain JavaScript objects to a formatted plain text representation. It allows you to convert complex data structures into a more human-readable and structured format for better understanding and debugging.
 
@@ -71,11 +71,11 @@ const data = {
 
 // This is optional
 const options = {
-  color: true;                      // Whether to apply colors to the output or not
-  spacing: true;                    // Whether to include spacing after colons or not
-  squareBracketsForArray: false;    // Whether to use square brackets for arrays or not
-  doubleQuotesForKeys: false;       // Whether to use double quotes for object keys or not
-  doubleQuotesForValues: false;     // Whether to use double quotes for string values or not
+  color: true,                      // Whether to apply colors to the output or not
+  spacing: true,                    // Whether to include spacing after colons or not
+  squareBracketsForArray: false,    // Whether to use square brackets for arrays or not
+  doubleQuotesForKeys: false,       // Whether to use double quotes for object keys or not
+  doubleQuotesForValues: false,     // Whether to use double quotes for string values or not
 }
 
 // Convert the data to formatted plain text representation
