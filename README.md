@@ -28,7 +28,7 @@ The `jsonToPlainText` function accepts two parameters: `data` and `options`.
 
   - `color` (boolean, default: `true`): Whether to apply colors to the output or not. Set to `true` to add colors using the `chalk` library or `false` for plain text output.
 
-  - `spacing` (boolean, default: `true`): Whether to include spacing after colons. Set to `true` for formatted spacing or `false` to remove spacing after colons.
+  - `spacing` (boolean, default: `true`): Whether to include spacing before colons. Set to `true` for formatted spacing or `false` to remove spacing before colons.
 
   - `squareBracketsForArray` (boolean, default: `false`): Whether to use square brackets for arrays. Set to `true` to enclose arrays in square brackets or `false` to display arrays without brackets.
 
@@ -72,7 +72,7 @@ const data = {
 // This is optional
 const options = {
   color: true,                      // Whether to apply colors to the output or not
-  spacing: true,                    // Whether to include spacing after colons or not
+  spacing: true,                    // Whether to include spacing before colons or not
   squareBracketsForArray: false,    // Whether to use square brackets for arrays or not
   doubleQuotesForKeys: false,       // Whether to use double quotes for object keys or not
   doubleQuotesForValues: false,     // Whether to use double quotes for string values or not
