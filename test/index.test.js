@@ -9,11 +9,11 @@ describe("jsonToPlainText function", () => {
     };
 
     const expectedOutput = `
-name       : John
-age        : 30
-isEmployed : true`;
+name       = John
+age        = 30
+isEmployed = true`;
 
-    const result = jsonToPlainText(data, { color: false });
+    const result = jsonToPlainText(data, { color: false, seperator: "=" });
     expect(result).toBe(expectedOutput);
   });
 });

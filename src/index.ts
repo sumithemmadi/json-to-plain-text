@@ -26,6 +26,7 @@ import chalk from "chalk";
 interface Options {
   color?: boolean; // Whether to apply colors to the output or not
   spacing?: boolean; // Whether to include spacing after colons or not
+  seperator?: string; // seperator. Default ':',
   squareBracketsForArray?: boolean; // Whether to use square brackets for arrays or not
   doubleQuotesForKeys?: boolean; // Whether to use double quotes for object keys or not
   doubleQuotesForValues?: boolean; // Whether to use double quotes for string values or not
@@ -39,6 +40,7 @@ interface Options {
  * @param options {Options} - (Optional) Configuration options for customizing the output.
  *   - color {boolean} - Whether to apply colors to the output (default: true).
  *   - spacing {boolean} - Whether to include spacing after colons (default: true).
+ *   - seperator {string} -  seperator. Default ':',
  *   - squareBracketsForArray {boolean} - Whether to use square brackets for arrays (default: false).
  *   - doubleQuotesForKeys {boolean} - Whether to use double quotes for object keys (default: false).
  *   - doubleQuotesForValues {boolean} - Whether to use double quotes for string values (default: false).
@@ -49,6 +51,7 @@ interface Options {
  * const options = {
  *    color: true,
  *    spacing: true,
+ *    seperator?: "=";
  *    squareBracketsForArray: false,
  *    doubleQuotesForKeys: false,
  *    doubleQuotesForValues: false,
@@ -58,18 +61,19 @@ interface Options {
  *
  * // Output:
  * //
- * //   name : "John",
- * //   age : 30,
- * //   isEmployed : true
+ * //   name = "John",
+ * //   age = 30,
+ * //   isEmployed = true
  */
 
 function jsonToPlainText(data: unknown, options: Options): string {
   const visited = new Set();
   let indentLevel = 1;
 
-  const defaultOptions = {
+  const defaultOptions: Options = {
     color: true,
     spacing: true,
+    seperator: ":",
     squareBracketsForArray: false,
     doubleQuotesForKeys: false,
     doubleQuotesForValues: false,
@@ -77,9 +81,10 @@ function jsonToPlainText(data: unknown, options: Options): string {
 
   const mergedOptions = { ...defaultOptions, ...options }; // Merge user-provided options with default options
 
-  const outputOptions = {
+  const outputOptions: Options = {
     color: mergedOptions.color,
     spacing: mergedOptions.spacing,
+    seperator: mergedOptions.seperator,
     squareBracketsForArray: mergedOptions.squareBracketsForArray,
     doubleQuotesForKeys: mergedOptions.doubleQuotesForKeys,
     doubleQuotesForValues: mergedOptions.doubleQuotesForValues,
@@ -235,10 +240,10 @@ function jsonToPlainText(data: unknown, options: Options): string {
     (match, number) => {
       const space = parseInt(number, 10);
       return outputOptions.spacing
-        ? " ".repeat(indentLevel - space) + " : "
-        : " : ";
+        ? " ".repeat(indentLevel - space) + ` ${outputOptions.seperator} `
+        : ` ${outputOptions.seperator} `;
     },
   );
 }
 
-export { jsonToPlainText };
+export { jsonToPlainText, Options };

@@ -24,6 +24,7 @@ import chalk from "chalk";
  * @param options {Options} - (Optional) Configuration options for customizing the output.
  *   - color {boolean} - Whether to apply colors to the output (default: true).
  *   - spacing {boolean} - Whether to include spacing after colons (default: true).
+ *   - seperator {string} -  seperator. Default ':',
  *   - squareBracketsForArray {boolean} - Whether to use square brackets for arrays (default: false).
  *   - doubleQuotesForKeys {boolean} - Whether to use double quotes for object keys (default: false).
  *   - doubleQuotesForValues {boolean} - Whether to use double quotes for string values (default: false).
@@ -34,6 +35,7 @@ import chalk from "chalk";
  * const options = {
  *    color: true,
  *    spacing: true,
+ *    seperator?: "=";
  *    squareBracketsForArray: false,
  *    doubleQuotesForKeys: false,
  *    doubleQuotesForValues: false,
@@ -43,9 +45,9 @@ import chalk from "chalk";
  *
  * // Output:
  * //
- * //   name : "John",
- * //   age : 30,
- * //   isEmployed : true
+ * //   name = "John",
+ * //   age = 30,
+ * //   isEmployed = true
  */
 function jsonToPlainText(data, options) {
     const visited = new Set();
@@ -53,6 +55,7 @@ function jsonToPlainText(data, options) {
     const defaultOptions = {
         color: true,
         spacing: true,
+        seperator: ":",
         squareBracketsForArray: false,
         doubleQuotesForKeys: false,
         doubleQuotesForValues: false,
@@ -61,6 +64,7 @@ function jsonToPlainText(data, options) {
     const outputOptions = {
         color: mergedOptions.color,
         spacing: mergedOptions.spacing,
+        seperator: mergedOptions.seperator,
         squareBracketsForArray: mergedOptions.squareBracketsForArray,
         doubleQuotesForKeys: mergedOptions.doubleQuotesForKeys,
         doubleQuotesForValues: mergedOptions.doubleQuotesForValues,
@@ -210,8 +214,8 @@ function jsonToPlainText(data, options) {
     return handlers[getType(data)](data, false).replace(/}json-to-plain-text-special-string-(\d+){/g, (match, number) => {
         const space = parseInt(number, 10);
         return outputOptions.spacing
-            ? " ".repeat(indentLevel - space) + " : "
-            : " : ";
+            ? " ".repeat(indentLevel - space) + ` ${outputOptions.seperator} `
+            : ` ${outputOptions.seperator} `;
     });
 }
 export { jsonToPlainText };

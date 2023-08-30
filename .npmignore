@@ -3,7 +3,10 @@ src/
 # Ignore development and configuration files
 node_modules/
 test/
-.git/
-.eslint*
-.prettier*
+.github
+.eslintrc.json
+.eslintignore
+.prettierignore
+.prettierrc.json
+jest.config.ts
 coverage

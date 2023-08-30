@@ -1,6 +1,7 @@
 interface Options {
     color?: boolean;
     spacing?: boolean;
+    seperator?: string;
     squareBracketsForArray?: boolean;
     doubleQuotesForKeys?: boolean;
     doubleQuotesForValues?: boolean;
@@ -13,6 +14,7 @@ interface Options {
  * @param options {Options} - (Optional) Configuration options for customizing the output.
  *   - color {boolean} - Whether to apply colors to the output (default: true).
  *   - spacing {boolean} - Whether to include spacing after colons (default: true).
+ *   - seperator {string} -  seperator. Default ':',
  *   - squareBracketsForArray {boolean} - Whether to use square brackets for arrays (default: false).
  *   - doubleQuotesForKeys {boolean} - Whether to use double quotes for object keys (default: false).
  *   - doubleQuotesForValues {boolean} - Whether to use double quotes for string values (default: false).
@@ -23,6 +25,7 @@ interface Options {
  * const options = {
  *    color: true,
  *    spacing: true,
+ *    seperator?: "=";
  *    squareBracketsForArray: false,
  *    doubleQuotesForKeys: false,
  *    doubleQuotesForValues: false,
@@ -32,9 +35,9 @@ interface Options {
  *
  * // Output:
  * //
- * //   name : "John",
- * //   age : 30,
- * //   isEmployed : true
+ * //   name = "John",
+ * //   age = 30,
+ * //   isEmployed = true
  */
 declare function jsonToPlainText(data: unknown, options: Options): string;
-export { jsonToPlainText };
+export { jsonToPlainText, Options };

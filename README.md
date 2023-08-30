@@ -6,6 +6,10 @@
 [![License](https://img.shields.io/npm/l/json-to-plain-text.svg)](https://github.com/sumithemmadi/json-to-plain-text/blob/main/LICENSE)
 [![Maintenance](https://img.shields.io/npms-io/maintenance-score/json-to-plain-text)](https://github.com/sumithemmadi/json-to-plain-text)
 [![Issues](https://img.shields.io/github/issues/sumithemmadi/json-to-plain-text)](https://github.com/sumithemmadi/json-to-plain-text/issues)
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/sumithemmadi)](https://github.com/sponsors/sumithemmadi)
+[![install size](https://img.shields.io/badge/dynamic/json?url=https://packagephobia.com/v2/api.json?p=json-to-plain-text&query=$.install.pretty&label=install%20size)](https://packagephobia.now.sh/result?p=json-to-plain-text)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/json-to-plain-text)](https://bundlephobia.com/package/json-to-plain-text@latest)
+[![Known Vulnerabilities](https://snyk.io/test/npm/json-to-plain-text/badge.svg)](https://snyk.io/test/npm/json-to-plain-text)
 
 `json-to-plain-text` is a npm module that converts JSON-like data or plain JavaScript objects to a formatted plain text representation. It allows you to convert JSON-like data or plain JavaScript objects into  human-readable format.
 
@@ -19,7 +23,7 @@
 
 2. Import the `jsonToPlainText` function:
 
-   ```typescript
+   ```js
    import { jsonToPlainText } from "json-to-plain-text";
    ```
 
@@ -34,6 +38,7 @@ The `jsonToPlainText` function accepts two parameters: `data` and `options`.
 - `options` (optional): Configuration options for customizing the output. It is an object with the following properties:
 
   - `color` (boolean, default: `true`): Whether to apply colors to the output or not. Set to `true` to add colors using the `chalk` library or `false` for plain text output.
+  - `seperator` (string, default: `:`): seperate keys and values.
 
   - `spacing` (boolean, default: `true`): Whether to include spacing before colons. Set to `true` for formatted spacing or `false` to remove spacing before colons.
 
@@ -46,40 +51,38 @@ The `jsonToPlainText` function accepts two parameters: `data` and `options`.
 ### Example
 
 ```typescript
-import { jsonToPlainText } from "json-to-plain-text";
+import { jsonToPlainText, Options } from "json-to-plain-text";
 
-const data = {
-    "place_id": "173937105",
-    "osm_type": "way",
-    "osm_id": "319992693",
-    "lat": "17.861533866867224",
-    "lon": "78.8081441896764",
-    "display_name": "Satadar Nagar, Ward 116 Allapur, Hyderabad, Kukatpally mandal, Telangana, 500018, India",
-    "address": {
-        "neighbourhood": "Satadar Nagar",
-        "suburb": "Ward 116 Allapur",
-        "city": "Hyderabad",
-        "county": "Kukatpally mandal",
-        "state": "Telangana",
-        "postcode": "500018",
-        "country": "India",
-        "country_code": "in"
-    },
-    "extratags": {},
-    "namedetails": {},
-    "boundingbox": [
-        "17.8598497",
-        "17.8623087",
-        "78.8079136",
-        "78.8082658"
-    ],
-    "distance": 2
-}
+let data = {
+  place_id: "173937105",
+  osm_type: "way",
+  osm_id: "319992693",
+  lat: "17.861533866867224",
+  lon: "78.8081441896764",
+  display_name:
+    "Satadar Nagar, Ward 116 Allapur, Hyderabad, Kukatpally mandal, Telangana, 500018, India",
+  address: {
+    neighbourhood: "Satadar Nagar",
+    suburb: "Ward 116 Allapur",
+    city: "Hyderabad",
+    county: "Kukatpally mandal",
+    state: "Telangana",
+    postcode: "500018",
+    country: "India",
+    country_code: "in",
+  },
+  extratags: {},
+  namedetails: {},
+  boundingbox: ["17.8598497", "17.8623087", "78.8079136", "78.8082658"],
+  distance: 2,
+};
+
 
 // This is optional
-const options = {
+const options: Options = {
   color: true,                      // Whether to apply colors to the output or not
   spacing: true,                    // Whether to include spacing before colons or not
+  seperator: ":",                   // seperate keys and values.
   squareBracketsForArray: false,    // Whether to use square brackets for arrays or not
   doubleQuotesForKeys: false,       // Whether to use double quotes for object keys or not
   doubleQuotesForValues: false,     // Whether to use double quotes for string values or not
@@ -87,7 +90,6 @@ const options = {
 
 // Convert the data to formatted plain text representation
 const plainText = jsonToPlainText(data, options);
-
 console.log(plainText);
 ```
 
@@ -114,6 +116,17 @@ namedetails   : {}
 boundingbox   : 17.8598497, 17.8623087, 78.8079136, 78.8082658
 distance      : 2
 ```
+
+## 💝 Sponsor
+
+If you find TruecallerJS helpful or inspiring, consider supporting me through GitHub Sponsors. Your sponsorship helps me dedicate more time and effort to open source development and creating impactful projects.
+
+- **Sponsor Me**: [https://github.com/sponsors/sumithemmadi](https://github.com/sponsors/sumithemmadi/)
+  
+- <a href="https://www.buymeacoffee.com/sumithemmadi" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-red.png" alt="Buy Me A Coffee" style="height: 45px !important;width: 200px !important;" ></a>
+### 💖 Sponsors
+
+[![Sponsors](https://sumithemmadi.github.io/sponsor.svg)](https://github.com/sponsors/sumithemmadi/)
 
 ## License
 
