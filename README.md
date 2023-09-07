@@ -116,17 +116,21 @@ namedetails   : {}
 boundingbox   : 17.8598497, 17.8623087, 78.8079136, 78.8082658
 distance      : 2
 ```
+## 💝 Sponsor and support me
 
-## 💝 Sponsor
+If you find my projects helpful or inspiring, consider supporting me through GitHub Sponsors. Your sponsorship helps me dedicate more time and effort to open source development and creating impactful projects.
 
-If you find TruecallerJS helpful or inspiring, consider supporting me through GitHub Sponsors. Your sponsorship helps me dedicate more time and effort to open source development and creating impactful projects.
+[:heart: Sponsor me on github](https://github.com/sponsors/sumithemmadi?o=sd&sc=t)
 
-- **Sponsor Me**: [https://github.com/sponsors/sumithemmadi](https://github.com/sponsors/sumithemmadi/)
-  
-- <a href="https://www.buymeacoffee.com/sumithemmadi" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-red.png" alt="Buy Me A Coffee" style="height: 45px !important;width: 200px !important;" ></a>
+<a href='https://ko-fi.com/W7W4OZNLF' target='_blank'><img height='40' style='border:0px;height:40px;' src='https://storage.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+
+<a href="https://www.buymeacoffee.com/sumithemmadi"> <img align="left" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="40" width="180" alt="sumithemmadi" /></a><br><br>
+
 ### 💖 Sponsors
 
-[![Sponsors](https://sumithemmadi.github.io/sponsor.svg)](https://github.com/sponsors/sumithemmadi/)
+[![Sponsors](https://sumithemmadi.github.io/sponsors.svg)](https://github.com/sponsors/sumithemmadi/)
+
+- I want to extend my sincere gratitude to all my sponsors for their generous support.
 
 ## License
 
