@@ -66,7 +66,7 @@ function jsonToPlainText(data, options) {
         doubleQuotesForKeys: false,
         doubleQuotesForValues: false,
     };
-    const mergedOptions = Object.assign(Object.assign({}, defaultOptions), options); // Merge user-provided options with default options
+    const mergedOptions = { ...defaultOptions, ...options }; // Merge user-provided options with default options
     const outputOptions = {
         color: mergedOptions.color,
         spacing: mergedOptions.spacing,

@@ -152,8 +152,8 @@ function jsonToPlainText(data: unknown, options: Options): string {
         (outputOptions.doubleQuotesForKeys
           ? '"' + (outputOptions.color ? chalk.greenBright(key) : key) + '"'
           : outputOptions.color
-          ? chalk.green(key)
-          : key) +
+            ? chalk.green(key)
+            : key) +
         "}json-to-plain-text-special-string-" +
         key.length +
         "{" +
@@ -185,8 +185,8 @@ function jsonToPlainText(data: unknown, options: Options): string {
       return outputOptions.color
         ? chalk.magenta(x ? "true" : "false")
         : x
-        ? "true"
-        : "false";
+          ? "true"
+          : "false";
     },
     // Handle strings
     string: function (x: string) {

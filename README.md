@@ -2,7 +2,7 @@
 
 [![Version](https://img.shields.io/npm/v/json-to-plain-text.svg)](https://www.npmjs.com/package/json-to-plain-text)
 [![Stars](https://img.shields.io/github/stars/sumithemmadi/json-to-plain-text)](https://github.com/sumithemmadi/json-to-plain-text/stargazers)
-[![Weekly Download](https://img.shields.io/npm/dt/json-to-plain-text.svg)](https://github.com/sumithemmadi/json-to-plain-text)
+[![Download](https://img.shields.io/npm/dt/json-to-plain-text.svg)](https://github.com/sumithemmadi/json-to-plain-text)
 [![License](https://img.shields.io/npm/l/json-to-plain-text.svg)](https://github.com/sumithemmadi/json-to-plain-text/blob/main/LICENSE)
 [![Maintenance](https://img.shields.io/npms-io/maintenance-score/json-to-plain-text)](https://github.com/sumithemmadi/json-to-plain-text)
 [![Issues](https://img.shields.io/github/issues/sumithemmadi/json-to-plain-text)](https://github.com/sumithemmadi/json-to-plain-text/issues)
@@ -130,7 +130,7 @@ If you find my projects helpful or inspiring, consider supporting me through Git
 
 [![Sponsors](https://sumithemmadi.github.io/sponsors.svg)](https://github.com/sponsors/sumithemmadi/)
 
-- I want to extend my sincere gratitude to all my sponsors for their generous support.
+- A huge thanks to my sponsors for their support.
 
 ## License
 
