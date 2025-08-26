@@ -2,140 +2,146 @@
 
 [![Version](https://img.shields.io/npm/v/json-to-plain-text.svg)](https://www.npmjs.com/package/json-to-plain-text)
 [![Stars](https://img.shields.io/github/stars/sumithemmadi/json-to-plain-text)](https://github.com/sumithemmadi/json-to-plain-text/stargazers)
-[![Download](https://img.shields.io/npm/dt/json-to-plain-text.svg)](https://github.com/sumithemmadi/json-to-plain-text)
-[![License](https://img.shields.io/npm/l/json-to-plain-text.svg)](https://github.com/sumithemmadi/json-to-plain-text/blob/main/LICENSE)
+[![Downloads](https://img.shields.io/npm/dt/json-to-plain-text.svg)](https://www.npmjs.com/package/json-to-plain-text)
+[![License](https://img.shields.io/npm/l/json-to-plain-text.svg)](LICENSE)
 [![Maintenance](https://img.shields.io/npms-io/maintenance-score/json-to-plain-text)](https://github.com/sumithemmadi/json-to-plain-text)
 [![Issues](https://img.shields.io/github/issues/sumithemmadi/json-to-plain-text)](https://github.com/sumithemmadi/json-to-plain-text/issues)
 [![GitHub Sponsors](https://img.shields.io/github/sponsors/sumithemmadi)](https://github.com/sponsors/sumithemmadi)
-[![install size](https://img.shields.io/badge/dynamic/json?url=https://packagephobia.com/v2/api.json?p=json-to-plain-text&query=$.install.pretty&label=install%20size)](https://packagephobia.now.sh/result?p=json-to-plain-text)
-[![npm bundle size](https://img.shields.io/bundlephobia/minzip/json-to-plain-text)](https://bundlephobia.com/package/json-to-plain-text@latest)
+[![Install size](https://img.shields.io/badge/dynamic/json?url=https://packagephobia.com/v2/api.json?p=json-to-plain-text&query=$.install.pretty&label=install%20size)](https://packagephobia.com/result?p=json-to-plain-text)
+[![Bundle size](https://img.shields.io/bundlephobia/minzip/json-to-plain-text)](https://bundlephobia.com/package/json-to-plain-text@latest)
 [![Known Vulnerabilities](https://snyk.io/test/npm/json-to-plain-text/badge.svg)](https://snyk.io/test/npm/json-to-plain-text)
 
-`json-to-plain-text` is a npm module that converts JSON-like data or plain JavaScript objects to a formatted plain text representation. It allows you to convert JSON-like data or plain JavaScript objects into  human-readable format.
+---
 
-## Installation
+## 📖 Overview  
 
-1. Install `json-to-plain-text` npm package.
+`json-to-plain-text` is a lightweight npm package that converts **JSON** into a clean, human-readable **plain-text**.  
 
-   ```bash
-   npm install json-to-plain-text
-   ```
+Think of it as `JSON.stringify()`, but prettier, friendlier, and tailored for **logs, debugging, and CLI output**.
 
-2. Import the `jsonToPlainText` function:
+> [!NOTE]  
+> From version **2.0.0+**, this package outputs plain text only.  
+> If you need **colored output**, please use [version 1.1.4](https://www.npmjs.com/package/json-to-plain-text/v/1.1.4) .  
 
-   ```js
-   import { jsonToPlainText } from "json-to-plain-text";
-   ```
+---
 
-## Usage
+## ✨ Features  
 
-The `jsonToPlainText` function accepts two parameters: `data` and `options`.
+- 🔹 Convert JSON objects into easy-to-read plain text  
+- ⚡ Tiny & fast (zero dependencies)  
+- 🛠 Configurable separators, spacing, quotes, and array formatting  
+- ✅ Great for **logs, debugging, reports, and CLI tools**  
 
-### Parameters
+---
 
-- `data` (required): The input data to convert. It can be JSON-like data or plain JavaScript objects.
+## 🔍 Why use this?  
 
-- `options` (optional): Configuration options for customizing the output. It is an object with the following properties:
+Use `json-to-plain-text` when you need:  
+- 📑 **Readable logs** – no more squinting at raw JSON  
+- 🖥 **CLI outputs** – format objects neatly for the terminal  
+- 🧪 **Debugging helpers** – quickly inspect nested objects  
+- 📝 **Reports/configs** – human-friendly data printing  
 
-  - `color` (boolean, default: `true`): Whether to apply colors to the output or not. Set to `true` to add colors using the `chalk` library or `false` for plain text output.
-  - `seperator` (string, default: `:`): seperate keys and values.
+---
 
-  - `spacing` (boolean, default: `true`): Whether to include spacing before colons. Set to `true` for formatted spacing or `false` to remove spacing before colons.
+## 🚀 Installation  
 
-  - `squareBracketsForArray` (boolean, default: `false`): Whether to use square brackets for arrays. Set to `true` to enclose arrays in square brackets or `false` to display arrays without brackets.
+```bash
+npm install json-to-plain-text
+```
 
-  - `doubleQuotesForKeys` (boolean, default: `false`): Whether to use double quotes for object keys. Set to `true` to wrap object keys in double quotes or `false` to keep them as they are.
+---
 
-  - `doubleQuotesForValues` (boolean, default: `false`): Whether to use double quotes for string values. Set to `true` to add double quotes around string values or `false` to display them without quotes.
+## 📦 Usage  
 
-### Example
+```js
+import { jsonToPlainText } from "json-to-plain-text";
+```
 
-```typescript
+---
+
+## ⚙️ API  
+
+```ts
+jsonToPlainText(data: unknown, options?: Options): string
+```
+
+### Parameters  
+
+- **`data`** *(required)* – JSON-like input or JavaScript object.  
+- **`options`** *(optional)* – Customize the formatting.  
+
+| Option                   | Type    | Default | Description |
+|---------------------------|---------|---------|-------------|
+| `separator`              | string  | `:`     | Character used between keys and values. |
+| `spacing`                | boolean | `true`  | Align keys with spacing before colons. |
+| `squareBracketsForArray` | boolean | `false` | Display arrays inside `[]`. |
+| `doubleQuotesForKeys`    | boolean | `false` | Wrap object keys in double quotes. |
+| `doubleQuotesForValues`  | boolean | `false` | Wrap string values in double quotes. |
+
+---
+
+## 💡 Example  
+
+```ts
 import { jsonToPlainText, Options } from "json-to-plain-text";
 
-let data = {
+const data = {
   place_id: "173937105",
   osm_type: "way",
-  osm_id: "319992693",
   lat: "17.861533866867224",
   lon: "78.8081441896764",
-  display_name:
-    "Satadar Nagar, Ward 116 Allapur, Hyderabad, Kukatpally mandal, Telangana, 500018, India",
   address: {
-    neighbourhood: "Satadar Nagar",
-    suburb: "Ward 116 Allapur",
     city: "Hyderabad",
-    county: "Kukatpally mandal",
     state: "Telangana",
-    postcode: "500018",
     country: "India",
-    country_code: "in",
   },
-  extratags: {},
-  namedetails: {},
-  boundingbox: ["17.8598497", "17.8623087", "78.8079136", "78.8082658"],
   distance: 2,
 };
 
-
-// This is optional
 const options: Options = {
-  color: true,                      // Whether to apply colors to the output or not
-  spacing: true,                    // Whether to include spacing before colons or not
-  seperator: ":",                   // seperate keys and values.
-  squareBracketsForArray: false,    // Whether to use square brackets for arrays or not
-  doubleQuotesForKeys: false,       // Whether to use double quotes for object keys or not
-  doubleQuotesForValues: false,     // Whether to use double quotes for string values or not
-}
+  separator: ":",
+  spacing: true,
+  squareBracketsForArray: false,
+  doubleQuotesForKeys: false,
+  doubleQuotesForValues: false,
+};
 
-// Convert the data to formatted plain text representation
-const plainText = jsonToPlainText(data, options);
-console.log(plainText);
+console.log(jsonToPlainText(data, options));
 ```
 
-### Output
+### ✅ Output  
 
 ```yaml
-place_id      : 173937105
-osm_type      : way
-osm_id        : 319992693
-lat           : 17.861533866867224
-lon           : 78.8081441896764
-display_name  : Satadar Nagar, Ward 116 Allapur, Hyderabad, Kukatpally mandal, Telangana, 500018, India
-address       : 
-neighbourhood : Satadar Nagar
-suburb        : Ward 116 Allapur
-city          : Hyderabad
-county        : Kukatpally mandal
-state         : Telangana
-postcode      : 500018
-country       : India
-country_code  : in
-extratags     : {}
-namedetails   : {}
-boundingbox   : 17.8598497, 17.8623087, 78.8079136, 78.8082658
-distance      : 2
+place_id : 173937105
+osm_type : way
+lat      : 17.861533866867224
+lon      : 78.8081441896764
+address  : 
+city     : Hyderabad
+state    : Telangana
+country  : India
+distance : 2
 ```
-## 💝 Sponsor and support me
 
-If you find my projects helpful or inspiring, consider supporting me through GitHub Sponsors. Your sponsorship helps me dedicate more time and effort to open source development and creating impactful projects.
+---
 
-[:heart: Sponsor me on github](https://github.com/sponsors/sumithemmadi?o=sd&sc=t)
+## 💝 Support  
 
-<a href='https://ko-fi.com/W7W4OZNLF' target='_blank'><img height='40' style='border:0px;height:40px;' src='https://storage.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+If this project helps you, consider supporting my open-source work:  
 
-<a href="https://www.buymeacoffee.com/sumithemmadi"> <img align="left" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="40" width="180" alt="sumithemmadi" /></a><br><br>
+- [💖 SPONSOR ME ON GITHUB](https://github.com/sponsors/sumithemmadi?o=sd&sc=t)  
 
-### 💖 Sponsors
+A huge thanks to all sponsors for supporting my work!  
 
-[![Sponsors](https://sumithemmadi.github.io/sponsors.svg)](https://github.com/sponsors/sumithemmadi/)
+---
 
-- A huge thanks to my sponsors for their support.
+## 📜 License  
 
-## License
+This project is licensed under the [MIT License](LICENSE).  
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+---
 
-## Author
+## 👨‍💻 Author  
 
-- [Sumith Emmadi](https://github.com/sumithemmadi)
+- [Sumith Emmadi](https://github.com/sumithemmadi)  

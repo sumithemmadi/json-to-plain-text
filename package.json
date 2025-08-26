@@ -1,7 +1,7 @@
 {
   "name": "json-to-plain-text",
-  "version": "1.1.4",
-  "description": "json-to-plain-text",
+  "version": "1.2.0",
+  "description": "Convert JSON or JavaScript objects into clean, human-readable plain text format.",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "type": "module",
@@ -17,23 +17,32 @@
     "build": "rm -rf dist && tsc && npm run build:cjs",
     "build:cjs": "tsc --project tsconfig.cjs.json && npm run echo:type-cjs",
     "echo:type-cjs": "echo '{\"type\": \"commonjs\"}' > dist/cjs/package.json",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "eslint": "npx eslint .",
-    "prettier": "npx prettier --write ."
+    "prettier": "npx prettier --write .",
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sumithemmadi/json-to-plain-text.git"
   },
   "keywords": [
-    "jsonToPlainText",
     "json",
-    "plain",
-    "text",
-    "convert",
-    "convertor",
-    "plaintext",
-    "txt"
+    "plain text",
+    "json to text",
+    "json formatter",
+    "json pretty print",
+    "formatter",
+    "logging",
+    "debugging",
+    "cli",
+    "output",
+    "print",
+    "human readable",
+    "node",
+    "nodejs",
+    "typescript",
+    "utility"
   ],
   "author": "sumithemmadi",
   "license": "MIT",
@@ -51,7 +60,10 @@
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
   },
-  "dependencies": {
-    "chalk": "^4.1.2"
-  }
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false
 }

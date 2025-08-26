@@ -1,10 +1,12 @@
 node_modules
 coverage
 
+# Ignore lock files (optional, up to you)
+package-lock.json
+yarn.lock
 
-
-
-
+# Ignore misc
+*.log
 
 
 

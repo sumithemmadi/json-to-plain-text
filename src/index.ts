@@ -1,17 +1,13 @@
 // MIT License
-
 // Copyright (c) 2021 Emmadi Sumith Kumar
-
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-
 // The above copyright notice and this permission notice shall be included in all
 // copies or substantial portions of the Software.
-
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,11 +16,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import chalk from "chalk";
-
-// Interface defining the options that can be passed to the function
 interface Options {
-  color?: boolean; // Whether to apply colors to the output or not
   spacing?: boolean; // Whether to include spacing after colons or not
   seperator?: string; // seperator. Default ':',
   squareBracketsForArray?: boolean; // Whether to use square brackets for arrays or not
@@ -34,44 +26,12 @@ interface Options {
 
 /**
  * Convert JSON-like data or plain JavaScript objects to formatted plain text representation.
- *
- * @function jsonToPlainText
- * @param data {unknown} - The input data to convert. Can be JSON-like data or plain JavaScript objects.
- * @param options {Options} - (Optional) Configuration options for customizing the output.
- *   - color {boolean} - Whether to apply colors to the output (default: true).
- *   - spacing {boolean} - Whether to include spacing after colons (default: true).
- *   - seperator {string} -  seperator. Default ':',
- *   - squareBracketsForArray {boolean} - Whether to use square brackets for arrays (default: false).
- *   - doubleQuotesForKeys {boolean} - Whether to use double quotes for object keys (default: false).
- *   - doubleQuotesForValues {boolean} - Whether to use double quotes for string values (default: false).
- * @returns {string} - The formatted plain text representation of the input data.
- * @example
- * // Basic usage:
- * const data = { name: "John", age: 30, isEmployed: true };
- * const options = {
- *    color: true,
- *    spacing: true,
- *    seperator?: "=";
- *    squareBracketsForArray: false,
- *    doubleQuotesForKeys: false,
- *    doubleQuotesForValues: false,
- * }
- * const plainText = jsonToPlainText(data);
- * console.log(plainText);
- *
- * // Output:
- * //
- * //   name = "John",
- * //   age = 30,
- * //   isEmployed = true
  */
-
-function jsonToPlainText(data: unknown, options: Options): string {
+function jsonToPlainText(data: unknown, options?: Options): string {
   const visited = new Set();
   let indentLevel = 1;
 
   const defaultOptions: Options = {
-    color: true,
     spacing: true,
     seperator: ":",
     squareBracketsForArray: false,
@@ -79,21 +39,11 @@ function jsonToPlainText(data: unknown, options: Options): string {
     doubleQuotesForValues: false,
   };
 
-  const mergedOptions = { ...defaultOptions, ...options }; // Merge user-provided options with default options
-
-  const outputOptions: Options = {
-    color: mergedOptions.color,
-    spacing: mergedOptions.spacing,
-    seperator: mergedOptions.seperator,
-    squareBracketsForArray: mergedOptions.squareBracketsForArray,
-    doubleQuotesForKeys: mergedOptions.doubleQuotesForKeys,
-    doubleQuotesForValues: mergedOptions.doubleQuotesForValues,
-  };
+  const outputOptions = { ...defaultOptions, ...options };
 
   // Helper function to determine the type of a variable
   function getType(variable: unknown): string {
     const type = typeof variable;
-    // Identify the specific type for object-like variables (null, array, object, date, regexp)
     if (type === "object") {
       if (variable === null) return "null";
       if (Array.isArray(variable)) return "array";
@@ -106,54 +56,35 @@ function jsonToPlainText(data: unknown, options: Options): string {
 
   // Helper function to handle arrays
   function handleArray(arr: unknown[]): string {
-    let output = "";
-    if (arr.length === 0) {
-      output += "[]";
-      return output;
-    }
-    arr.forEach((item, index) => {
-      const handler = handlers[getType(item)];
-      if (!handler) {
-        throw new Error("Unsupported data type: " + getType(item));
-      }
-      if (index === 0) {
-        output += handler(item, true);
-      } else {
-        output += ", " + handler(item, true);
-      }
-    });
-    return outputOptions.squareBracketsForArray ? "[ " + output + " ]" : output;
+    if (arr.length === 0) return "[]";
+
+    const output = arr
+      .map((item) => {
+        const handler = handlers[getType(item)];
+        if (!handler)
+          throw new Error("Unsupported data type: " + getType(item));
+        return handler(item, true);
+      })
+      .join(", ");
+
+    return outputOptions.squareBracketsForArray ? `[ ${output} ]` : output;
   }
 
   // Helper function to handle objects
   function handleObject(obj: { [key: string]: unknown }): string {
+    if (Object.keys(obj).length === 0) return "{}";
+
     let output = "";
-    if (Object.keys(obj).length === 0) {
-      output += "{}";
-      return output;
-    }
-    const keys = Object.keys(obj);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    keys.forEach((key, index) => {
+    Object.keys(obj).forEach((key) => {
       const value = obj[key];
+      if (typeof value === "undefined") return;
       const handler = handlers[getType(value)];
-      if (typeof value === "undefined") {
-        return;
-      }
-      if (!handler) {
-        throw new Error("Unsupported data type: " + getType(value));
-      }
-      if (key.length >= indentLevel) {
-        indentLevel = key.length;
-      }
+      if (!handler) throw new Error("Unsupported data type: " + getType(value));
+      if (key.length >= indentLevel) indentLevel = key.length;
 
       output +=
         "\n" +
-        (outputOptions.doubleQuotesForKeys
-          ? '"' + (outputOptions.color ? chalk.greenBright(key) : key) + '"'
-          : outputOptions.color
-            ? chalk.green(key)
-            : key) +
+        (outputOptions.doubleQuotesForKeys ? `"${key}"` : key) +
         "}json-to-plain-text-special-string-" +
         key.length +
         "{" +
@@ -164,77 +95,32 @@ function jsonToPlainText(data: unknown, options: Options): string {
 
   // Handlers for different data types
   const handlers: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: (data: any, inArray: boolean) => string;
   } = {
-    // Handle cases where data is undefined or null
-    undefined: function () {
-      return outputOptions.color ? chalk.gray("null") : "null";
-    },
-    null: function () {
-      return outputOptions.color ? chalk.gray("null") : "null";
-    },
-    // Handle numbers
-    number: function (x: number) {
-      return outputOptions.color
-        ? chalk.blueBright(x.toString())
-        : x.toString();
-    },
-    // Handle booleans
-    boolean: function (x: boolean) {
-      return outputOptions.color
-        ? chalk.magenta(x ? "true" : "false")
-        : x
-          ? "true"
-          : "false";
-    },
-    // Handle strings
-    string: function (x: string) {
-      const str = outputOptions.color
-        ? chalk.yellow(x.toString())
-        : x.toString();
-      return outputOptions.doubleQuotesForValues ? '"' + str + '"' : str;
-    },
-    // Handle arrays, check for circular references
-    array: function (x: unknown[]) {
-      if (visited.has(x)) {
-        return outputOptions.color ? chalk.red("[Circular]") : "[Circular]";
-      }
+    undefined: () => "undefined",
+    null: () => "null",
+    number: (x: number) => x.toString(),
+    boolean: (x: boolean) => (x ? "true" : "false"),
+    string: (x: string) => (outputOptions.doubleQuotesForValues ? `"${x}"` : x),
+    array: (x: unknown[]) => {
+      if (visited.has(x)) return "[Circular]";
       visited.add(x);
       const output = handleArray(x);
       visited.delete(x);
       return output;
     },
-    // Handle objects, check for circular references
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    object: function (x: { [key: string]: unknown }, inArray: boolean) {
-      if (visited.has(x)) {
-        return outputOptions.color ? chalk.red("[Circular]") : "[Circular]";
-      }
+    object: (x: { [key: string]: unknown }) => {
+      if (visited.has(x)) return "[Circular]";
       visited.add(x);
       const output = handleObject(x);
       visited.delete(x);
       return output;
     },
-    // Handle dates
-    date: function (x: Date) {
-      return outputOptions.color
-        ? chalk.cyan(x.toISOString())
-        : x.toISOString();
-    },
-    // Handle regular expressions
-    regexp: function (x: RegExp) {
-      return outputOptions.color ? chalk.redBright(x.toString()) : x.toString();
-    },
-    // Handle functions
-    function: function () {
-      return outputOptions.color
-        ? chalk.blue("[object Function]")
-        : "[object Function]";
-    },
+    date: (x: Date) => x.toISOString(),
+    regexp: (x: RegExp) => x.toString(),
+    function: () => "[object Function]",
   };
 
-  // Start the conversion with the root data and return the final result
   return handlers[getType(data)](data, false).replace(
     /}json-to-plain-text-special-string-(\d+){/g,
     (match, number) => {

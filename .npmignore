@@ -1,12 +1,31 @@
+# Ignore source and test files
 src/
-
-# Ignore development and configuration files
-node_modules/
 test/
-.github
-.eslintrc.json
-.eslintignore
-.prettierignore
-.prettierrc.json
+
+# Ignore build configs
+tsconfig.json
+tsconfig.cjs.json
 jest.config.ts
-coverage
+
+# Ignore environment/config files
+.eslintrc.json
+.eslintrc
+.eslintignore
+.prettierrc.json
+.prettierignore
+
+# Ignore VCS & GitHub files
+.gitignore
+.github/
+
+# Ignore documentation (optional, keep README & LICENSE usually)
+CHANGELOG.md
+CODE_OF_CONDUCT.md
+SECURITY.md
+
+# Ignore lock files (optional, up to you)
+package-lock.json
+yarn.lock
+
+# Ignore misc
+*.log
